@@ -11,8 +11,8 @@
 - [Usage](#usage)
 - [Support](#support)
 - [Roadmap](#roadmap)
-- [Contribute](#contribute)
-- [Author](#author)
+- [Contribute](#contributing)
+- [Authors and acknowledgement](#author)
 
 <hr style="border: none; height: 3px; background-color: #003057;" />
 
@@ -116,10 +116,11 @@ Contributions are welcome! Please follow these steps to contribute:
 * Push to the branch (__git push origin feature-branch__).
 * Open a Pull Request.
 
-## Authors and acknowledgment
+## Author
+ - Authors and acknowledgment
 
 This project was developed by __Marcy Misner__. Special thanks to the open-source community for the libraries and tools used in this project.
-For more examples of my work, see my [Github portfolio](https://github.com/M-arcy) and my [LinkedIn profile](https://www.linkedin.com/in/marcy-misner/).
+For more examples of my work, see [Github portfolio](https://github.com/M-arcy) and [LinkedIn profile](https://www.linkedin.com/in/marcy-misner/).
 
 ## License
 
