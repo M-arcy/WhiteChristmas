@@ -35,6 +35,8 @@ This project has these files:
  - 'requirements.txt' -  lists all the packages and dependencies required to run the project. 
  - 'README.md'  - provides an overview of the project. 
 
+[Back to Top](#)
+
 
 ## Badges
 
@@ -75,6 +77,8 @@ pip install -r requirements.txt
 
 ```
 
+[Back to Top](#)
+
 ## Usage
 
 To use the WhiteChristmas project:
@@ -98,6 +102,8 @@ Future enhancements may include:
 * Expanding the data retrieval to include more locations for a regional prediction.
 * Adding more weather metrics such as snowfall amounts.
 * Implementing a web-based interface for easier access to the data.
+
+[Back to Top](#)
 
 ## Contributing
 
@@ -124,3 +130,4 @@ This project is licensed under the MIT License.
 This project is actively maintained for the next six months. Future updates and features within that time frame are planned. Contributions and suggestions are always welcome.
 
 
+[Back to Top](#)
