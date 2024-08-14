@@ -3,10 +3,18 @@
 
 # WhiteChristmas
 
-## | Table of Contents |
-    |______________|
-    |[Description](#description)
+    |## Table of Contents|
 
+- [Description](#description)
+- [Visuals](#visuals)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Support](#support)
+- [Roadmap](#roadmap)
+- [Contribute](#contribute)
+- [Author](#author)
+
+<hr style="border: none; height: 3px; background-color: #003057;" />
 ## Name
 
 White Christmas Weather Analysis and Database
@@ -103,6 +111,7 @@ Contributions are welcome! Please follow these steps to contribute:
 ## Authors and acknowledgment
 
 This project was developed by __Marcy Misner__. Special thanks to the open-source community for the libraries and tools used in this project.
+For more examples of my work, see my [Github portfolio](https://github.com/M-arcy) and my [LinkedIn profile](https://www.linkedin.com/in/marcy-misner/)
 
 ## License
 
