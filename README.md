@@ -1,13 +1,15 @@
+
+
+B.  Create a README file (e.g., .md or .txt) that includes notes describing the commands, inputs, and outputs needed to run your program.
+
 # WhiteChristmas
 
-#B.  Create a README file (e.g., .md or .txt) that includes notes describing the commands, inputs, and outputs needed to run your program.
-
-
-
 ## Name
+
 White Christmas Weather Analysis and Database
 ## Description
-__WhiteChristmas__ is a __Python__-based project designed to retrieve and analyze historical weather data for a specific location on a specific date over the past five years. For the purposes of this project, the data collection focuses on Christmas Day in Sault Ste. Marie, Michigan, and uses an __external weather API__ to gather data, which is then stored in an __SQLite database__. The application is designed in general to assist event planners in understanding weather patterns and making informed decisions for outdoor event planning. This project happens to accompany another project repository that covers machine learning for the same city and date. It can be found at [Github](http://github.com/M-arcy/Will-There-Be-a-White-Christmas-this-Year-in-Sault-Michigan)
+
+WhiteChristmas is a __Python__-based project designed to retrieve and analyze historical weather data for a specific location on a specific date over the past five years. For the purposes of this project, the data collection focuses on Christmas Day in Sault Ste. Marie, Michigan, and uses an __external weather API__ to gather data, which is then stored in an __SQLite database__. The application is designed in general to assist event planners in understanding weather patterns and making informed decisions for outdoor event planning. This project happens to accompany another project repository that covers machine learning for the same city and date. It can be found at [Github.com/M-arcy](http://github.com/M-arcy/Will-There-Be-a-White-Christmas-this-Year-in-Sault-Michigan).
 
 The project includes methods to fetch and display temperature, wind speed, and precipitation data, as well as store this information in a local SQLite database using SQLAlchemy. The project ensures data integrity by avoiding duplicate entries and provides a method to query and display data for any given year.
 
@@ -58,24 +60,24 @@ python main.py
 
 Query the stored data for a specific year. Modify the main.py script or use the provided query method to retrieve and display data for any specific year.
 ## Support
-For support, you can open an issue on the GitHub repository or contact the author via email at mmisn15@wgu.edu
+For support, you can open an issue on the GitHub repository or contact the author via email at mmisn15@wgu.edu.
 
 ## Roadmap
 Future enhancements may include:
 
-* Expanding the data retrieval to include more locations.
-* Adding more weather metrics such as humidity and snowfall.
+* Expanding the data retrieval to include more locations for a regional prediction.
+* Adding more weather metrics such as snowfall amounts.
 * Implementing a web-based interface for easier access to the data.
 
 ## Contributing
 Contributions are welcome! Please follow these steps to contribute:
 
-Fork the repository.
-Create a new branch (__git checkout -b feature-branch__).
-Make your changes.
-Commit your changes (__git commit -m 'Add new feature'__).
-Push to the branch (__git push origin feature-branch__).
-Open a Pull Request.
+* Fork the repository.
+* Create a new branch (__git checkout -b feature-branch__).
+* Make your changes.
+* Commit your changes (__git commit -m 'Add new feature'__).
+* Push to the branch (__git push origin feature-branch__).
+* Open a Pull Request.
 
 ## Authors and acknowledgment
 This project was developed by __Marcy Misner__. Special thanks to the open-source community for the libraries and tools used in this project.
