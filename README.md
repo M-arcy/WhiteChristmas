@@ -14,7 +14,7 @@
 - [Contribute](#contributing)
 - [Authors and acknowledgement](#author)
 
-<hr style="border: none; height: 3px; background-color: #003057;" />
+<hr style="border: none; height: 10px; background-color: #003057;" />
 
 ## Name
 
