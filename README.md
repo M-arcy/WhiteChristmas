@@ -3,50 +3,87 @@
 #B.  Create a README file (e.g., .md or .txt) that includes notes describing the commands, inputs, and outputs needed to run your program.
 
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
 ## Name
-Choose a self-explaining name for your project.
-
+White Christmas Weather Analysis and Database
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+__WhiteChristmas__ is a __Python__-based project designed to retrieve and analyze historical weather data for a specific location on a specific date over the past five years. For the purposes of this project, the data collection focuses on Christmas Day in Sault Ste. Marie, Michigan, and uses an __external weather API__ to gather data, which is then stored in an __SQLite database__. The application is designed in general to assist event planners in understanding weather patterns and making informed decisions for outdoor event planning. This project happens to accompany another project repository that covers machine learning for the same city and date. It can be found at [Github](http://github.com/M-arcy/Will-There-Be-a-White-Christmas-this-Year-in-Sault-Michigan)
+
+The project includes methods to fetch and display temperature, wind speed, and precipitation data, as well as store this information in a local SQLite database using SQLAlchemy. The project ensures data integrity by avoiding duplicate entries and provides a method to query and display data for any given year.
 
 ## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 
 ## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Here's an example of the output generated:
+```go
+5-Year Weather Data for 12/25 in SSM:
+Average Temperature: 28.18 F (Min: 17.0 F, Max: 39.4 F)
+Average Wind Speed: 13.5 mph (Min: 10.3 mph, Max: 17.5 mph)
+Total Precipitation: 0.339 inches (Min: 0.0 inches, Max: 0.303 inches)
+```
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+To set up this project on your local machine, follow these steps:
+
+Clone the repository:
+
+```go
+git clone https://github.com/YourUsername/WhiteChristmas.git
+cd WhiteChristmas 
+```
+
+Create and activate a virtual environment (optional but recommended):
+
+```python
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+Install the required dependencies:
+
+```python
+pip install -r requirements.txt
+
+```
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+To use the WhiteChristmas project:
 
+Run the main script to fetch and store weather data:
+
+```python
+python main.py
+```
+
+Query the stored data for a specific year. Modify the main.py script or use the provided query method to retrieve and display data for any specific year.
 ## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+For support, you can open an issue on the GitHub repository or contact the author via email at mmisn15@wgu.edu
 
 ## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Future enhancements may include:
+
+* Expanding the data retrieval to include more locations.
+* Adding more weather metrics such as humidity and snowfall.
+* Implementing a web-based interface for easier access to the data.
 
 ## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Contributions are welcome! Please follow these steps to contribute:
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Fork the repository.
+Create a new branch (__git checkout -b feature-branch__).
+Make your changes.
+Commit your changes (__git commit -m 'Add new feature'__).
+Push to the branch (__git push origin feature-branch__).
+Open a Pull Request.
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+This project was developed by __Marcy Misner__. Special thanks to the open-source community for the libraries and tools used in this project.
 
 ## License
-For open source projects, say how it is licensed.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
-Students run the CI Pipeline to create your D493 Scripting and Programming-Applications project for completing the PA.
+This project is actively maintained for the next six months. Future updates and features wtihin that time frame are planned. Contributions are welcome!
 
 
