@@ -23,7 +23,7 @@ def main():
     records = db.query_all_data()
     for record in records:
         print(record)
-    # Example: Query and display data for the year 2023
+    # test: Query and display data for the year 2023
     db.query_data_by_year(2023)
 
 

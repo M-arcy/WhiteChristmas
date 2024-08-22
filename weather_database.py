@@ -30,6 +30,9 @@
 
 •   five-year maximum precipitation on chosen date """
 
+""" C6.  Write a method that queries the table you created in SQLite and retrieves the data you stored in part C5. Include a screenshot that shows the formatted version of the data on the screen for your chosen location and date. 
+The screenshot must be clear and show the full view of your screen, including the date and time."""
+
 from sqlalchemy import create_engine, Column, Integer, Float, String, Sequence
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -37,10 +40,11 @@ from sqlalchemy.orm import sessionmaker
 # Create a base class for declarative models
 Base = declarative_base()
 
-# Define the WeatherDataModel class to map to the SQLite table
+
+# Define the WeatherDataModel class to map to the SQLite table, creates the table with column headers
 class WeatherDataModel(Base):
     __tablename__ = 'weather_data'
-    
+
     id = Column(Integer, primary_key=True, autoincrement=True)  # Primary key
     latitude = Column(Float)
     longitude = Column(Float)
@@ -57,6 +61,7 @@ class WeatherDataModel(Base):
     min_precipitation = Column(Float)
     max_precipitation = Column(Float)
 
+
 # Per C4, create a new class to handle database operations
 class WeatherDatabase:
     def __init__(self, db_name='weather_data.db'):
@@ -64,7 +69,7 @@ class WeatherDatabase:
         self.engine = create_engine(f'sqlite:///{db_name}')
         Base.metadata.create_all(self.engine)  # Create all tables
         self.Session = sessionmaker(bind=self.engine)
-    
+
     def add_weather_data(self, weather_data):
         session = self.Session()
         try:
@@ -77,7 +82,7 @@ class WeatherDatabase:
                 year=weather_data.year
             ).first()
 
-            if existing_record is None:  # Only add if the record doesn't already exist
+            if existing_record is None:  # Only adds if the record doesn't already exist so there's no duplicates
                 weather_record = WeatherDataModel(
                     latitude=weather_data.latitude,
                     longitude=weather_data.longitude,
@@ -114,29 +119,28 @@ class WeatherDatabase:
         finally:
             session.close()  # Close the session per best practice
 
-""" C6.  Write a method that queries the table you created in SQLite and retrieves the data you stored in part C5. Include a screenshot that shows the formatted version of the data on the screen for your chosen location and date. The screenshot must be clear and show the full view of your screen, including the date and time."""
+    def query_data_by_year(self, year):
+        session = self.Session()
+        try:
+            # Query the record for the specified year
+            record = session.query(WeatherDataModel).filter_by(year=year).first()
+            if record:
+                print(f"Weather Data for {record.year}:")
+                print(f"Location: ({record.latitude}, {record.longitude})")
+                print(f"Date: {record.month}/{record.day}/{record.year}")
+                print(f"Avg Temp: {record.avg_temp} F")
+                print(f"Min Temp: {record.min_temp} F")
+                print(f"Max Temp: {record.max_temp} F")
+                print(f"Avg Wind Speed: {record.avg_wind_speed} mph")
+                print(f"Min Wind Speed: {record.min_wind_speed} mph")
+                print(f"Max Wind Speed: {record.max_wind_speed} mph")
+                print(f"Sum Precipitation: {record.sum_precipitation} inches")
+                print(f"Min Precipitation: {record.min_precipitation} inches")
+                print(f"Max Precipitation: {record.max_precipitation} inches")
+            else:
+                print(f"No data found for the year {year}.")
+        finally:
+            session.close()
 
-def query_data_by_year(self, year):
-    session = self.Session()
-    try:
-        # Query the record for the specified year
-        record = session.query(WeatherDataModel).filter_by(year=year).first()
-        if record:
-            print(f"Weather Data for {record.year}:")
-            print(f"Location: ({record.latitude}, {record.longitude})")
-            print(f"Date: {record.month}/{record.day}/{record.year}")
-            print(f"Avg Temp: {record.avg_temp} F")
-            print(f"Min Temp: {record.min_temp} F")
-            print(f"Max Temp: {record.max_temp} F")
-            print(f"Avg Wind Speed: {record.avg_wind_speed} mph")
-            print(f"Min Wind Speed: {record.min_wind_speed} mph")
-            print(f"Max Wind Speed: {record.max_wind_speed} mph")
-            print(f"Sum Precipitation: {record.sum_precipitation} inches")
-            print(f"Min Precipitation: {record.min_precipitation} inches")
-            print(f"Max Precipitation: {record.max_precipitation} inches")
-        else:
-            print(f"No data found for the year {year}.")
-    finally:
-        session.close()
 
 

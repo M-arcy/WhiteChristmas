@@ -27,7 +27,7 @@ class WeatherData:
             response = requests.get(url)
             if response.status_code == 200:
                 data = response.json()
-                temperatures.append(data['daily']['temperature_2m_mean'][0])
+                temperatures.append(data['daily']['temperature_2m_mean'][0]) # mean temp in F
         
         if temperatures:
             self.averagetemp = sum(temperatures) / len(temperatures)
@@ -41,11 +41,11 @@ class WeatherData:
             response = requests.get(url)
             if response.status_code == 200:
                 data = response.json()
-                wind_speeds.append(data['daily']['windspeed_10m_max'][0])
+                wind_speeds.append(data['daily']['windspeed_10m_max'][0]) #max windspeed in mph
         
         if wind_speeds:
-            self.averagewind = sum(wind_speeds) / len(wind_speeds)
-            self.minwind = min(wind_speeds)
+            self.averagewind = sum(wind_speeds) / len(wind_speeds) #gets avg windspeed
+            self.minwind = min(wind_speeds) #pulls min and max windspeed
             self.maxwind = max(wind_speeds)
     
     def fetch_precipitation(self):
@@ -55,7 +55,7 @@ class WeatherData:
             response = requests.get(url)
             if response.status_code == 200:
                 data = response.json()
-                precipitations.append(data['daily']['precipitation_sum'][0])
+                precipitations.append(data['daily']['precipitation_sum'][0]) #pulls in sum precip in inches
         
         if precipitations:
             self.sumprecip = sum(precipitations)
@@ -63,7 +63,7 @@ class WeatherData:
             self.maxprecip = max(precipitations)
     
     def display_data(self):
-        print(f"5-Year Weather Data for {self.month}/{self.day} in SSM:")
+        print(f"5-Year Weather Data for {self.month}/{self.day} in SSM:") #shows data returned via API
         print(f"Average Temperature: {self.averagetemp} F (Min: {self.mintemp} F, Max: {self.maxtemp} F)")
         print(f"Average Wind Speed: {self.averagewind} mph (Min: {self.minwind} mph, Max: {self.maxwind} mph)")
         print(f"Total Precipitation: {self.sumprecip} inches (Min: {self.minprecip} inches, Max: {self.maxprecip} inches)")

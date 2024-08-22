@@ -1,4 +1,4 @@
-import unittest
+import unittest  # Import the unittest module
 from weather_data import WeatherData
 from weather_database import WeatherDatabase
 
@@ -32,3 +32,8 @@ class TestWeatherDatabase(unittest.TestCase):
         db.add_weather_data(weather)  # Attempt to add the same record again
         records = db.query_all_data()
         self.assertEqual(len(records), 1, "There should be only one record in the database after attempting to add a duplicate")
+
+
+
+if __name__ == '__main__':
+    unittest.main()  # Run the tests
