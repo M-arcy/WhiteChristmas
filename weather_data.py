@@ -1,9 +1,13 @@
 import requests
-#C1. Create a class with instance variables. 
+
+YEARS_OF_HISTORY = 5
+BASE_URL = "https://archive-api.open-meteo.com/v1/archive"
+
+
 class WeatherData:
-    def __init__(self, latitude, longitude, month, day, year, 
-                 averagetemp=None, mintemp=None, maxtemp=None, 
-                 averagewind=None, minwind=None, maxwind=None, 
+    def __init__(self, latitude, longitude, month, day, year,
+                 averagetemp=None, mintemp=None, maxtemp=None,
+                 averagewind=None, minwind=None, maxwind=None,
                  sumprecip=None, minprecip=None, maxprecip=None):
         self.latitude = latitude
         self.longitude = longitude
@@ -19,53 +23,66 @@ class WeatherData:
         self.sumprecip = sumprecip
         self.minprecip = minprecip
         self.maxprecip = maxprecip
-    #C2. Create a method for each of the following variables: mean temp in Fahrenheit, max wind speed in mph, precipitation sum in inches
+
+    def _fetch_daily_values(self, variable, extra_params):
+        """Fetch a single daily weather variable across YEARS_OF_HISTORY years.
+
+        Returns a list of values (one per year). Skips years where the API
+        call fails rather than crashing the whole run.
+        """
+        values = []
+        for year in range(self.year - (YEARS_OF_HISTORY - 1), self.year + 1):
+            date_str = f"{year}-{self.month:02d}-{self.day:02d}"
+            params = {
+                "latitude": self.latitude,
+                "longitude": self.longitude,
+                "start_date": date_str,
+                "end_date": date_str,
+                "daily": variable,
+                "timezone": "America/New_York",
+                **extra_params,
+            }
+            try:
+                response = requests.get(BASE_URL, params=params, timeout=10)
+                response.raise_for_status()
+                data = response.json()
+                values.append(data["daily"][variable][0])
+            except requests.RequestException as error:
+                print(f"Warning: could not fetch data for {date_str} ({error})")
+        return values
+
     def fetch_temperature(self):
-        temperatures = []
-        for year in range(self.year - 4, self.year + 1):
-            url = f"https://archive-api.open-meteo.com/v1/archive?latitude={self.latitude}&longitude={self.longitude}&start_date={year}-{self.month:02d}-{self.day:02d}&end_date={year}-{self.month:02d}-{self.day:02d}&daily=temperature_2m_mean&temperature_unit=fahrenheit&timezone=America%2FNew_York"
-            response = requests.get(url)
-            if response.status_code == 200:
-                data = response.json()
-                temperatures.append(data['daily']['temperature_2m_mean'][0]) # mean temp in F
-        
-        if temperatures:
-            self.averagetemp = sum(temperatures) / len(temperatures)
-            self.mintemp = min(temperatures)
-            self.maxtemp = max(temperatures)
-    
+        temps = self._fetch_daily_values(
+            "temperature_2m_mean",
+            {"temperature_unit": "fahrenheit"},
+        )
+        if temps:
+            self.averagetemp = sum(temps) / len(temps)
+            self.mintemp = min(temps)
+            self.maxtemp = max(temps)
+
     def fetch_wind_speed(self):
-        wind_speeds = []
-        for year in range(self.year - 4, self.year + 1):
-            url = f"https://archive-api.open-meteo.com/v1/archive?latitude={self.latitude}&longitude={self.longitude}&start_date={year}-{self.month:02d}-{self.day:02d}&end_date={year}-{self.month:02d}-{self.day:02d}&daily=windspeed_10m_max&wind_speed_unit=mph&timezone=America%2FNew_York"
-            response = requests.get(url)
-            if response.status_code == 200:
-                data = response.json()
-                wind_speeds.append(data['daily']['windspeed_10m_max'][0]) #max windspeed in mph
-        
-        if wind_speeds:
-            self.averagewind = sum(wind_speeds) / len(wind_speeds) #gets avg windspeed
-            self.minwind = min(wind_speeds) #pulls min and max windspeed
-            self.maxwind = max(wind_speeds)
-    
+        speeds = self._fetch_daily_values(
+            "windspeed_10m_max",
+            {"wind_speed_unit": "mph"},
+        )
+        if speeds:
+            self.averagewind = sum(speeds) / len(speeds)
+            self.minwind = min(speeds)
+            self.maxwind = max(speeds)
+
     def fetch_precipitation(self):
-        precipitations = []
-        for year in range(self.year - 4, self.year + 1):
-            url = f"https://archive-api.open-meteo.com/v1/archive?latitude={self.latitude}&longitude={self.longitude}&start_date={year}-{self.month:02d}-{self.day:02d}&end_date={year}-{self.month:02d}-{self.day:02d}&daily=precipitation_sum&precipitation_unit=inch&timezone=America%2FNew_York"
-            response = requests.get(url)
-            if response.status_code == 200:
-                data = response.json()
-                precipitations.append(data['daily']['precipitation_sum'][0]) #pulls in sum precip in inches
-        
-        if precipitations:
-            self.sumprecip = sum(precipitations)
-            self.minprecip = min(precipitations)
-            self.maxprecip = max(precipitations)
-    
+        precips = self._fetch_daily_values(
+            "precipitation_sum",
+            {"precipitation_unit": "inch"},
+        )
+        if precips:
+            self.sumprecip = sum(precips)
+            self.minprecip = min(precips)
+            self.maxprecip = max(precips)
+
     def display_data(self):
-        print(f"5-Year Weather Data for {self.month}/{self.day} in SSM:") #shows data returned via API
+        print(f"5-Year Weather Data for {self.month}/{self.day} in SSM:")
         print(f"Average Temperature: {self.averagetemp} F (Min: {self.mintemp} F, Max: {self.maxtemp} F)")
         print(f"Average Wind Speed: {self.averagewind} mph (Min: {self.minwind} mph, Max: {self.maxwind} mph)")
         print(f"Total Precipitation: {self.sumprecip} inches (Min: {self.minprecip} inches, Max: {self.maxprecip} inches)")
-
-            
